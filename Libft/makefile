@@ -1,5 +1,8 @@
-comp: ft_strcat.c ft_strlen.c libft.h
-	gcc ft_strcat.c ft_strlen.c -o test
+comp: *.c libft.h
+	@gcc *.c -o test
 
 see: test
-	./test
+	@./test
+
+clear: test
+	@rm test

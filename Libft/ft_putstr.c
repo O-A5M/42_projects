@@ -11,9 +11,3 @@ void	ft_putstr(char const *s)
 		i++;
 	}
 }
-/*
-int	main()
-{
-	ft_putstr("halliisfj\n");
-	return 0;
-}*/
