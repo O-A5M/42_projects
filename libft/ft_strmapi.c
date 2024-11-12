@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:34:16 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/09 10:34:46 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:09:14 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 
 	if (!s || !f)
 		return (NULL);
+	i = 0;
 	ret = malloc(sizeof(char) * ft_strlen(s));
 	if (!ret)
 		return (NULL);

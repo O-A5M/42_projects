@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:31:48 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/09 10:32:57 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:51:30 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	*ft_strtrim_pro_max(char const *s, char c)
 	return (ret);
 }
 
-static int	str_allc(const char *s, char c, char **ret)
+static void	str_allc(const char *s, char c, char **ret)
 {
 	int	i;
 	int	a;
@@ -76,11 +76,13 @@ static int	str_allc(const char *s, char c, char **ret)
 		}
 		ret[a] = (char *) malloc(sizeof(char) * (allc + 1));
 		if (!ret[a])
-			return (0);
-		i++;
+		{
+			while (a > 0)
+				free(ret[--a]);
+			free(ret);
+		}
 		a++;
 	}
-	return (1);
 }
 
 static void	fill_it(const char *s, char c, char **ret)
@@ -119,17 +121,16 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	i = 0;
 	s1 = ft_strtrim_pro_max(s, c);
-	ret = malloc((cntwrd(s, c) + 1) * sizeof(char *));
+	ret = malloc((cntwrd(s1, c) + 1) * sizeof(char *));
 	if (!ret)
-		return (NULL);
-	if (str_allc(s1, c, ret) == 0)
 	{
-		while (ret[i])
-		{
-			free(ret[i]);
-			i++;
-		}
-		free(ret);
+		free(s1);
+		return (NULL);
+	}
+	str_allc(s1, c, ret);
+	if (!ret)
+	{
+		free(s1);
 		return (NULL);
 	}
 	fill_it(s1, c, ret);

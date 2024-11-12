@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:02:29 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/07 15:02:34 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:04:37 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t sz)
 	size_t	j;
 	size_t	h;
 
+	if (sz == 0)
+		return (ft_strlen(src));
 	i = 0;
 	j = ft_strlen(dst);
 	h = j;

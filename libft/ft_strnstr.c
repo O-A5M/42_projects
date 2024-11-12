@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:59:17 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/07 14:59:22 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:24:42 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	i = 0;
 	if (little[0] == '\0')
 		return ((char *)big);
-	while (big[i] && i < len)
+	while (i < len && big[i])
 	{
 		j = 0;
-		while (big[i + j] == little[j] && i + j < len)
+		while (i + j < len && big[i + j] == little[j])
 		{
 			j++;
 		}

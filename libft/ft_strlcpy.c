@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:03:10 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/07 15:03:15 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:00:02 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t sz)
 	size_t	i;
 
 	i = 0;
+	if (sz == 0)
+		return (ft_strlen(src));
 	while (i < sz - 1 && src[i])
 	{
 		dst[i] = src[i];
