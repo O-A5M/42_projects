@@ -6,31 +6,37 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:18:04 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/13 11:10:33 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:05:55 by othman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+void	*t_remove(void *cont, void (*del)(void *), t_list *new_list)
+{
+	del(cont);
+	ft_lstclear(&new_list, del);
+	return (NULL);
+}
+
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*ret;
-	t_list	*head;
+	t_list	*new_list;
+	t_list	*new_node;
+	void	*cont;
 
+	new_list = NULL;
+	cont = NULL;
 	if (!lst || !f || !del)
 		return (NULL);
-	ret = NULL;
-	head = ret;
 	while (lst)
 	{
-		ret = ft_lstnew(f(lst -> content));
-		if (!ret)
-		{
-			ft_lstclear(&ret, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&head, ret);
-		lst = lst -> next;
+		cont = f(lst->content);
+		new_node = ft_lstnew(cont);
+		if (!new_node)
+			return (t_remove(cont, del, new_list));
+		ft_lstadd_back(&new_list, new_node);
+		lst = lst->next;
 	}
-	return (head);
+	return (new_list);
 }

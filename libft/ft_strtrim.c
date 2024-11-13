@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 14:22:53 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/11 18:08:42 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:54:41 by othman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,22 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char			*ret;
-	unsigned int	start;
-	unsigned int	end;
-	size_t			len;
+	size_t	start;
+	size_t	end;
+	char	*ret;
 
 	if (!s1 || !set)
 		return (NULL);
-	if (s1[0] == '\0')
-	{
-		ret = malloc(sizeof('\0'));
-		if (!ret)
-			return (NULL);
-		ret[0] = '\0';
-		return (ret);
-	}
 	start = 0;
-	end = ft_strlen(s1) - 1;
 	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
-	while (end > start && ft_strchr(set, s1[end]))
+	end = ft_strlen(s1);
+	while (end > start && ft_strchr(set, s1[end - 1]))
 		end--;
-	len = end - start + 1;
-	ret = ft_substr(s1, start, len);
+	ret = (char *)malloc(end - start + 1);
+	if (!ret)
+		return (NULL);
+	ft_strlcpy(ret, s1 + start, end - start + 1);
+	ret[end - start] = '\0';
 	return (ret);
 }

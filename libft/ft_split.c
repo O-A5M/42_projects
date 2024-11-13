@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:31:48 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/13 16:32:55 by othman           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:37:51 by othman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	m_alloc(char **s, const char *d, char c)
 	i = 0;
 	while (d[a])
 	{
-		while (d[] == c)
+		while (d[a] == c)
 			a++;
 		if (!d[a])
 			break ;
@@ -81,7 +81,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	len = cntwrd(s, c);
-	arr = (char **)malloc((len + 1) * sizeof(char *));
+	ret = (char **)malloc((len + 1) * sizeof(char *));
 	if (!ret)
 		return (NULL);
 	if (m_alloc(ret, s, c) == 0)
