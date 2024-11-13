@@ -6,87 +6,87 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:31:48 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/13 13:51:40 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:32:55 by othman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_word(const char *s, char c)
+static int	cntwrd(const char *s, char c)
 {
 	int	i;
-	int	count;
+	int	len;
 
 	i = 0;
-	count = 0;
+	len = 0;
 	while (s[i])
 	{
 		while (s[i] == c && s[i])
 			i++;
 		if (s[i])
 		{
-			count++;
+			len++;
 			while (s[i] != c && s[i])
 				i++;
 		}
 	}
-	return (count);
+	return (len);
 }
 
-static int	cleaner(char **s, size_t i)
+static int	f_ree(char **s, size_t a)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
-	while (index < i - 1)
+	i = 0;
+	while (i < a - 1)
 	{
-		free(s[index]);
-		index++;
+		free(s[i]);
+		i++;
 	}
 	free(s);
 	return (0);
 }
 
-static int	maldup(char **s, const char *d, char c)
+static int	m_alloc(char **s, const char *d, char c)
 {
-	size_t	te;
+	size_t	a;
 	size_t	start;
-	size_t	index;
+	size_t	i;
 
-	te = 0;
+	a = 0;
 	start = 0;
-	index = 0;
-	while (d[te])
+	i = 0;
+	while (d[a])
 	{
-		while (d[te] == c)
-			te++;
-		if (!d[te])
+		while (d[] == c)
+			a++;
+		if (!d[a])
 			break ;
-		start = te;
-		while (d[te] && d[te] != c)
-			te++;
-		s[index] = ft_substr(d, start, te - start);
-		if (!s[index++])
-			return (cleaner(s, index));
+		start = a;
+		while (d[a] && d[a] != c)
+			a++;
+		s[i] = ft_substr(d, start, a - start);
+		if (!s[i++])
+			return (f_ree(s, i));
 	}
-	s[index] = NULL;
+	s[i] = NULL;
 	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		count;
-	char	**arr;
+	int		len;
+	char	**ret;
 
 	if (!s)
 		return (NULL);
-	count = count_word(s, c);
-	arr = (char **)malloc((count + 1) * sizeof(char *));
-	if (!arr)
+	len = cntwrd(s, c);
+	arr = (char **)malloc((len + 1) * sizeof(char *));
+	if (!ret)
 		return (NULL);
-	if (maldup(arr, s, c) == 0)
+	if (m_alloc(ret, s, c) == 0)
 	{
 		return (NULL);
 	}
-	return (arr);
+	return (ret);
 }
