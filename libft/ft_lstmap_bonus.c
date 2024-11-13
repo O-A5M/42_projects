@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 18:22:43 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/12 18:51:24 by oakhmouc         ###   ########.fr       */
+/*   Created: 2024/11/13 10:18:04 by oakhmouc          #+#    #+#             */
+/*   Updated: 2024/11/13 11:10:33 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*tmp;
-	int		ret;
+	t_list	*ret;
+	t_list	*head;
 
-	tmp = lst;
-	ret = 0;
-	while (tmp)
+	if (!lst || !f || !del)
+		return (NULL);
+	ret = NULL;
+	head = ret;
+	while (lst)
 	{
-		ret++;
-		tmp = tmp -> next;
+		ret = ft_lstnew(f(lst -> content));
+		if (!ret)
+		{
+			ft_lstclear(&ret, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&head, ret);
+		lst = lst -> next;
 	}
-	return (ret);
+	return (head);
 }

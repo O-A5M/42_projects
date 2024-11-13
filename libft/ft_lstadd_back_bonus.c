@@ -1,10 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/12 20:13:41 by oakhmouc          #+#    #+#             */
+/*   Updated: 2024/11/12 20:26:04 by oakhmouc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	while (*lst)
+	t_list	*tmp;
+
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		lst = lst -> next;
+		tmp = ft_lstlast(*lst);
+		tmp -> next = new;
 	}
-	lst -> next = new;
 }

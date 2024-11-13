@@ -6,134 +6,87 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:31:48 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/12 09:51:30 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:51:40 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	cntwrd(const char *s, char c)
+static int	count_word(const char *s, char c)
 {
 	int	i;
-	int	ret;
+	int	count;
 
 	i = 0;
-	ret = 0;
+	count = 0;
 	while (s[i])
 	{
-		if (s[i] != c
-			&& (s[i + 1] == c || s[i + 1] == '\0'))
-			ret++;
-		i++;
+		while (s[i] == c && s[i])
+			i++;
+		if (s[i])
+		{
+			count++;
+			while (s[i] != c && s[i])
+				i++;
+		}
 	}
-	return (ret);
+	return (count);
 }
 
-static char	*ft_strtrim_pro_max(char const *s, char c)
+static int	cleaner(char **s, size_t i)
 {
-	int		i;
-	int		len;
-	int		sp_len;
-	int		start;
-	char	*ret;
+	size_t	index;
 
-	i = 0;
-	sp_len = 0;
-	while (s[i] == c)
+	index = 0;
+	while (index < i - 1)
 	{
-		sp_len++;
-		i++;
+		free(s[index]);
+		index++;
 	}
-	start = i;
-	i = ft_strlen(s) - 1;
-	while (s[i] == c)
-	{
-		sp_len++;
-		i--;
-	}
-	len = ft_strlen(s) - sp_len;
-	ret = ft_substr(s, start, len);
-	return (ret);
+	free(s);
+	return (0);
 }
 
-static void	str_allc(const char *s, char c, char **ret)
+static int	maldup(char **s, const char *d, char c)
 {
-	int	i;
-	int	a;
-	int	allc;
+	size_t	te;
+	size_t	start;
+	size_t	index;
 
-	i = 0;
-	a = 0;
-	while (s[i])
+	te = 0;
+	start = 0;
+	index = 0;
+	while (d[te])
 	{
-		allc = 0;
-		while (s[i] == c)
-			i++;
-		while (s[i] != c && s[i] != '\0')
-		{
-			allc++;
-			i++;
-		}
-		ret[a] = (char *) malloc(sizeof(char) * (allc + 1));
-		if (!ret[a])
-		{
-			while (a > 0)
-				free(ret[--a]);
-			free(ret);
-		}
-		a++;
+		while (d[te] == c)
+			te++;
+		if (!d[te])
+			break ;
+		start = te;
+		while (d[te] && d[te] != c)
+			te++;
+		s[index] = ft_substr(d, start, te - start);
+		if (!s[index++])
+			return (cleaner(s, index));
 	}
-}
-
-static void	fill_it(const char *s, char c, char **ret)
-{
-	int	i;
-	int	a;
-	int	b;
-
-	i = 0;
-	a = 0;
-	b = 0;
-	while (s[i])
-	{
-		b = 0;
-		while (s[i] == c)
-			i++;
-		while (s[i] != c && s[i] != '\0')
-		{
-			ret[a][b] = s[i];
-			i++;
-			b++;
-		}
-		ret[a][b] = '\0';
-		a++;
-	}
-	ret[a] = NULL;
+	s[index] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**ret;
-	char	*s1;
-	int		i;
+	int		count;
+	char	**arr;
 
 	if (!s)
 		return (NULL);
-	i = 0;
-	s1 = ft_strtrim_pro_max(s, c);
-	ret = malloc((cntwrd(s1, c) + 1) * sizeof(char *));
-	if (!ret)
+	count = count_word(s, c);
+	arr = (char **)malloc((count + 1) * sizeof(char *));
+	if (!arr)
+		return (NULL);
+	if (maldup(arr, s, c) == 0)
 	{
-		free(s1);
 		return (NULL);
 	}
-	str_allc(s1, c, ret);
-	if (!ret)
-	{
-		free(s1);
-		return (NULL);
-	}
-	fill_it(s1, c, ret);
-	free(s1);
-	return (ret);
+	return (arr);
 }
