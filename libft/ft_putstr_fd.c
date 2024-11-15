@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:57:25 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/10/26 16:11:13 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:22:01 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return ;
 	while (s[i])
 	{
 		ft_putchar_fd(s[i], fd);

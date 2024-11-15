@@ -14,8 +14,8 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-bonus: $(OBJS) $(BONUS_OBJ)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJ)
+bonus: $(BONUS_OBJ)
+	ar rcs $(NAME) $(BONUS_OBJ)
 
 clean:
 	rm -rf $(OBJS) $(BONUS_OBJ)
@@ -24,3 +24,5 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re bonus
