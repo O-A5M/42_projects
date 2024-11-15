@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:13:41 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/12 20:26:04 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:05:28 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*tmp;
-
+	
+	if (!lst || !new)
+		return ;
 	if (!*lst)
 		*lst = new;
 	else
