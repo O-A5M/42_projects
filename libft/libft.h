@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:55:37 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/12 18:05:12 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:47:58 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include <stdlib.h>
+# include <stdint.h>
 
 typedef struct s_list
 {
