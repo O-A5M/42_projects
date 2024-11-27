@@ -2,11 +2,12 @@
 
 char	*get_next_line(int fd)
 {
-	static char 	*buff;
+	static char 	buff[] = "abcdef\nsjk";
 	int			i;
 	char		*ret;
 
 	i = 0;
+	close(fd);
 	while (i == 0)
 	{
 		get_that_line(buff, BUFFER_SIZE, fd);

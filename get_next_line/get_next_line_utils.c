@@ -85,3 +85,73 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dst[i + ld] = '\0';
 	return (ret);
 }
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t sz)
+{
+	size_t	i;
+
+	i = 0;
+	if (sz == 0)
+		return (ft_strlen(src));
+	while (i < sz - 1 && src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
+}
+
+void	*ft_realloc(void *ptr, size_t size)
+{
+	char	*ret;
+
+	if (!ptr)
+	{
+		ret = malloc(size);
+		if (!ret)
+			return (NULL);
+	}
+	else if (ptr && size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	else
+	{
+		ret = malloc(size);
+		if (!ret)
+			return (NULL);
+		ft_strlcpy(ret, (char *)ptr, ft_strlen(ptr));
+		free(ptr);
+	}
+	return (ret);
+}
+
+size_t	ft_linelen(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	return (i);
+}
+
+void	get_that_line(char *buff, size_t len, int fd)
+{
+	unsigned int	i;
+
+	if (!buff)
+		i = 0;
+	else
+		i = ft_strlen(buff);
+	buff = ft_realloc(buff, len + i);
+	if (!buff)
+		return ;
+	while (i < len)
+	{
+		read(fd, &buff[i], 1);
+		i++;
+	}
+}
