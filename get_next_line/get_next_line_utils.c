@@ -1,48 +1,33 @@
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
-{
-	int		i;
-	char	a;
-
-	i = 0;
-	a = c;
-	while (s[i])
-	{
-		if (s[i] == a)
-			return ((char *)s + i);
-		i++;
-	}
-	if (s[i] == a)
-		return ((char *)s + i);
-	return (NULL);
-}
-
-char	*ft_strcpy(char *dst, const char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != '\n' && src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\n';
-	dst[i] = '\0';
-	return (dst);
-}
-
 size_t	ft_strlen(const char *s)
 {
 	size_t	n;
 
 	n = 0;
-	while (s[n] != '\n')
+	while (s[n])
 	{
 		n++;
 	}
 	return (n);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	unsigned int	i;
+	char			cc;
+
+	cc = (char) c;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == cc)
+			return ((char *) &s[i]);
+		i++;
+	}
+	if (s[i] == cc)
+		return ((char *) &s[i]);
+	return (NULL);
 }
 
 char	*ft_strdup(const char *s)
@@ -62,96 +47,65 @@ char	*ft_strdup(const char *s)
 	return (ret);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+void	fill_it(char const *s1, char const *s2, char *dst)
 {
-	size_t	ld;
-	size_t	ls;
-	size_t	ret;
-	size_t	i;
+	int	i;
+	int	j;
 
-	if (!dst && size == 0)
-		return (ft_strlen(src));
-	ld = ft_strlen(dst);
-	ls = ft_strlen(src);
-	ret = ld + ls;
-	if (size <= ld)
-		return (size + ls);
 	i = 0;
-	while (i < (size - ld - 1) && src[i])
+	j = 0;
+	while (s1[i])
 	{
-		dst[i + ld] = src[i];
+		dst[i] = s1[i];
 		i++;
 	}
-	dst[i + ld] = '\0';
-	return (ret);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t sz)
-{
-	size_t	i;
-
-	i = 0;
-	if (sz == 0)
-		return (ft_strlen(src));
-	while (i < sz - 1 && src[i])
+	while (s2[j])
 	{
-		dst[i] = src[i];
+		dst[i] = s2[j];
+		j++;
 		i++;
 	}
 	dst[i] = '\0';
-	return (ft_strlen(src));
 }
 
-void	*ft_realloc(void *ptr, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ret;
+	size_t	i;
 
-	if (!ptr)
-	{
-		ret = malloc(size);
-		if (!ret)
-			return (NULL);
-	}
-	else if (ptr && size == 0)
-	{
-		free(ptr);
+	if (!s1 || !s2)
 		return (NULL);
-	}
-	else
-	{
-		ret = malloc(size);
-		if (!ret)
-			return (NULL);
-		ft_strlcpy(ret, (char *)ptr, ft_strlen(ptr));
-		free(ptr);
-	}
+	i = ft_strlen(s1) + ft_strlen(s2);
+	ret = malloc(sizeof(char) * i + 1);
+	if (!ret)
+		return (NULL);
+	fill_it(s1, s2, ret);
 	return (ret);
 }
 
-size_t	ft_linelen(char *s)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] && s[i] != '\n')
-		i++;
-	return (i);
-}
-
-void	get_that_line(char *buff, size_t len, int fd)
-{
+	char			*ret;
 	unsigned int	i;
 
-	if (!buff)
-		i = 0;
-	else
-		i = ft_strlen(buff);
-	buff = ft_realloc(buff, len + i);
-	if (!buff)
-		return ;
-	while (i < len)
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
 	{
-		read(fd, &buff[i], 1);
+		ret = ft_strdup("");
+		return (ret);
+	}
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	ret = malloc(sizeof(char) * len + 1);
+	if (!ret)
+		return (NULL);
+	while (start + i < start + len && s[start + i])
+	{
+		ret[i] = s[start + i];
 		i++;
 	}
+	ret[i] = '\0';
+	return (ret);
 }
