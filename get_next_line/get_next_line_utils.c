@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/01 11:25:36 by oakhmouc          #+#    #+#             */
+/*   Updated: 2024/12/01 11:31:03 by oakhmouc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
@@ -86,32 +98,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!ret)
 		return (NULL);
 	fill_it(s1, s2, ret);
-	return (ret);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char			*ret;
-	unsigned int	i;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-	{
-		ret = ft_strdup("");
-		return (ret);
-	}
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	ret = malloc(sizeof(char) * len + 1);
-	if (!ret)
-		return (NULL);
-	while (start + i < start + len && s[start + i])
-	{
-		ret[i] = s[start + i];
-		i++;
-	}
-	ret[i] = '\0';
 	return (ret);
 }

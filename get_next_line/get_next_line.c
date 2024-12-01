@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/01 11:25:04 by oakhmouc          #+#    #+#             */
+/*   Updated: 2024/12/01 11:34:33 by oakhmouc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-int	fill_line(int fd, char	*buff, char **ret)
+void	fill_line(int fd, char	*buff, char **ret)
 {
 	int	how_much;
-	
+
 	how_much = 1;
-	while(how_much > 0)
+	while (how_much > 0)
 	{
 		how_much = read(fd, buff, BUFFER_SIZE);
 		if (how_much == -1)
@@ -39,6 +51,33 @@ void	free_the_slave(char *ret, char **left_l)
 	}
 }
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char			*ret;
+	unsigned int	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
+	{
+		ret = ft_strdup("");
+		return (ret);
+	}
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	ret = malloc(sizeof(char) * len + 1);
+	if (!ret)
+		return (NULL);
+	while (start + i < start + len && s[start + i])
+	{
+		ret[i] = s[start + i];
+		i++;
+	}
+	ret[i] = '\0';
+	return (ret);
+}
+
 size_t	the_line(char *ret, char **left_l)
 {
 	size_t	count;
@@ -47,7 +86,7 @@ size_t	the_line(char *ret, char **left_l)
 	while (ret[count] != '\0' && ret[count] != '\n')
 		count++;
 	if (ret[count] == '\0')
-        	return (count);
+		return (count);
 	*left_l = ft_substr(ret, count + 1, ft_strlen(ret) - count);
 	return (count);
 }
@@ -65,7 +104,7 @@ char	*get_next_line(int fd)
 		buff = NULL;
 		free(left_l);
 		left_l = NULL;
-		return(NULL);
+		return (NULL);
 	}
 	if (!buff)
 		return (NULL);
