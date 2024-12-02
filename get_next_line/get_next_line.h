@@ -6,14 +6,14 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 11:25:20 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/12/01 11:33:53 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:41:16 by othman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 0
+#  define BUFFER_SIZE 5
 # endif
 # include <stdlib.h>
 # include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 11:25:04 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/12/01 11:34:33 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/12/01 18:41:36 by othman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	fill_line(int fd, char	*buff, char **ret)
 {
 	int	how_much;
+	char	*tmp;
 
 	how_much = 1;
 	while (how_much > 0)
@@ -31,7 +32,9 @@ void	fill_line(int fd, char	*buff, char **ret)
 		buff[how_much] = '\0';
 		if (!*ret)
 			*ret = ft_strdup("");
-		*ret = ft_strjoin(*ret, buff);
+		tmp = *ret;
+		*ret = ft_strjoin(tmp, buff);
+		free(tmp);
 		if (ft_strchr(*ret, '\n'))
 			break ;
 	}
@@ -87,6 +90,7 @@ size_t	the_line(char *ret, char **left_l)
 		count++;
 	if (ret[count] == '\0')
 		return (count);
+	free(*left_l);
 	*left_l = ft_substr(ret, count + 1, ft_strlen(ret) - count);
 	return (count);
 }
@@ -98,6 +102,8 @@ char	*get_next_line(int fd)
 	char		*ret;
 
 	buff = malloc(BUFFER_SIZE + 1);
+	if (!buff)
+		return (NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		free(buff);
@@ -106,8 +112,6 @@ char	*get_next_line(int fd)
 		left_l = NULL;
 		return (NULL);
 	}
-	if (!buff)
-		return (NULL);
 	ret = ft_strdup(left_l);
 	if (!ft_strchr(ret, '\n'))
 		fill_line(fd, buff, &ret);
