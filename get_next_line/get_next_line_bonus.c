@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 11:25:04 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/12/03 14:09:44 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/12/03 20:10:36 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	fill_line(int fd, char	*buff, char **ret)
 {
@@ -97,7 +97,7 @@ size_t	the_line(char *ret, char **left_l)
 
 char	*get_next_line(int fd)
 {
-	static char	*left_l;
+	static char	*left_l[1024];
 	char		*buff;
 	char		*ret;
 
@@ -108,18 +108,18 @@ char	*get_next_line(int fd)
 	{
 		free(buff);
 		buff = NULL;
-		free(left_l);
-		left_l = NULL;
+		free(left_l[fd]);
+		left_l[fd] = NULL;
 		return (NULL);
 	}
-	ret = ft_strdup(left_l);
+	ret = ft_strdup(left_l[fd]);
 	if (!ft_strchr(ret, '\n'))
 		fill_line(fd, buff, &ret);
 	free(buff);
 	buff = NULL;
 	if (!ret)
 		return (NULL);
-	free_the_slave(ret, &left_l);
-	ret[the_line(ret, &left_l) + 1] = '\0';
+	free_the_slave(ret, &left_l[fd]);
+	ret[the_line(ret, &left_l[fd]) + 1] = '\0';
 	return (ret);
 }
