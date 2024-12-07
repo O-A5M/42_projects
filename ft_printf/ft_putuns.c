@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putuns.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 14:58:31 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/11/07 14:58:33 by oakhmouc         ###   ########.fr       */
+/*   Created: 2024/12/06 15:13:32 by oakhmouc          #+#    #+#             */
+/*   Updated: 2024/12/06 15:17:08 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
 
-char	*ft_strdup(const char *s)
+void	ft_putuns(unsigned int n, int fd)
 {
-	char	*ret;
-	int		i;
+	unsigned int	nb;
 
-	i = ft_strlen(s);
-	ret = (char *)malloc(sizeof(char) * i + 1);
-	if (!ret)
-		return (NULL);
-	while (i >= 0)
+	nb = n;
+	if (nb < 0)
 	{
-		ret[i] = s[i];
-		i--;
+		nb = -nb;
+		ft_putchar_fd('-', fd);
 	}
-	return (ret);
+	if (nb > 9)
+	{
+		ft_putuns(nb / 10, fd);
+		ft_putuns(nb % 10, fd);
+	}
+	else
+		ft_putchar_fd(nb + '0', fd);
 }
