@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "ft_printf.h"
+#include <stdio.h>
 
 int	base_len(char *base)
 {
@@ -34,24 +36,22 @@ int	base_len(char *base)
 	return (n);
 }
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr_base(long long int lnbr, char *base)
+int	ft_putnbr_base(long long int lnbr, char *base)
 {
 	int			lbase;
+	int			ret;
 
+	ret = 0;
 	lbase = base_len(base);
 	if (lbase < 2)
-		return ;
+		return (0);
 	if (lnbr < 0)
 	{
-		ft_putchar('-');
+		ret += ft_putchar_fd('-', 1);
 		lnbr = -lnbr;
 	}
 	if (lnbr >= lbase)
-		ft_putnbr_base(lnbr / lbase, base);
-	ft_putchar(base[lnbr % lbase]);
+		ret += ft_putnbr_base(lnbr / lbase, base);
+	ret += ft_putchar_fd(base[lnbr % lbase], 1);
+	return (ret);
 }
