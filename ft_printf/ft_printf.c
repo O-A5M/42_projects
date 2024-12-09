@@ -6,31 +6,33 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:25:53 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/12/09 18:32:26 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:45:11 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	check(char* str, char c)
+int	check_s(char* str)
 {
 	int	i;
 
 	i = 0;
-	if (c == 's')
-	{
-		if (!str)
-			i = ft_putstr_fd("(null)", 1);
-		else
-			i = ft_putstr_fd(str, 1);
-	}
-/*	else
-	{
-		if (!va_arg(str, void*))
-			i = ft_putstr_fd("(nil)", 1);
-		else
-			i = ft_putadr(va_arg(str, unsigned long long int));
-	}*/
+	if (!str)
+		i = ft_putstr_fd("(null)", 1);
+	else
+		i = ft_putstr_fd(str, 1);
+	return (i);
+}
+
+int	check_p(void *p)
+{
+	int	i;
+
+	i = 0;
+	if (!p)
+		i = ft_putstr_fd("(nil)", 1);
+	else
+		i = ft_putadr((unsigned long long int)p);
 	return (i);
 }
 
@@ -40,7 +42,7 @@ int	print_var(va_list str, const char	*str1, int i)
 
 	ret = 0;
 	if (str1[i] == 's')
-		ret = check(va_arg(str, char*), 's');
+		ret = check_s(va_arg(str, char*));
 	else if (str1[i] == 'c')
 		ret = ft_putchar_fd(va_arg(str, int), 1);
 	else if (str1[i] == 'd' || str1[i] == 'i')
@@ -51,8 +53,8 @@ int	print_var(va_list str, const char	*str1, int i)
 		ret = ft_putnbr_base(va_arg(str, int), "0123456789ABCDEF");
 	else if (str1[i] == 'u')
 		ret = ft_putuns(va_arg(str, unsigned int), 1);
-//	else if (str1[i] == 'p')
-//		ret = check(str, 'p');
+	else if (str1[i] == 'p')
+		ret = check_p(va_arg(str, void*));
 	else if (str1[i] == '%')
 		ret = ft_putchar_fd('%', 1);
 	return (ret);
