@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base_lower.c                             :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 14:32:49 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/12/06 14:46:31 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:48:40 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	base_len(char *base)
 	return (n);
 }
 
-int	ft_putnbr_base(long long int lnbr, char *base)
+int	ft_putnbr_base(int lnbr, char *base)
 {
 	int			lbase;
 	int			ret;
