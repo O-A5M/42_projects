@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 14:32:49 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/12/09 18:52:12 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:59:06 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,22 @@ int	base_len(char *base)
 	return (n);
 }
 
-int	ft_putnbr_base(long long int lnbr, char *base)
+int	ft_putnbr_base(unsigned int lnbr, char *base)
 {
-	int			lbase;
+	size_t			lbase;
 	int			ret;
 
 	ret = 0;
 	lbase = base_len(base);
 	if (lbase < 2)
 		return (0);
+/*
 	if (lnbr < 0)
 	{
 		ret += ft_putchar_fd('-', 1);
 		lnbr = -lnbr;
 	}
+*/
 	if (lnbr >= lbase)
 		ret += ft_putnbr_base(lnbr / lbase, base);
 	ret += ft_putchar_fd(base[lnbr % lbase], 1);
