@@ -22,7 +22,7 @@ static int	base_len(char *base)
 	return (n);
 }
 
-unsigned int	ft_putnbr_base_long(unsigned long int lnbr, char *base)
+unsigned int	ft_putnbr_base_long(unsigned long long int lnbr, char *base)
 {
 	size_t		lbase;
 	int			ret;
