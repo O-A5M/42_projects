@@ -12,13 +12,35 @@
 
 #include "ft_printf.h"
 
+int	check(va_list str, char c)
+{
+	int	i;
+
+	i = 0;
+	if (c == 's')
+	{
+		if (!va_arg(str, char*))
+			i = ft_putstr_fd("(null)", 1);
+		else
+			i = ft_putstr_fd(va_arg(str, char*), 1);
+	}
+	else
+	{
+		if (!va_arg(str, void*))
+			i = ft_putstr_fd("(nil)", 1);
+		else
+			i = ft_putadr(va_arg(str, unsigned long long int));
+	}
+	return (i);
+}
+
 int	print_var(va_list str, const char	*str1, int i)
 {
 	int	ret;
 
 	ret = 0;
 	if (str1[i] == 's')
-		ret = ft_putstr_fd(va_arg(str, char *), 1);
+		ret = check(str, 's');
 	else if (str1[i] == 'c')
 		ret = ft_putchar_fd(va_arg(str, int), 1);
 	else if (str1[i] == 'd' || str1[i] == 'i')
@@ -30,7 +52,7 @@ int	print_var(va_list str, const char	*str1, int i)
 	else if (str1[i] == 'u')
 		ret = ft_putuns(va_arg(str, unsigned int), 1);
 	else if (str1[i] == 'p')
-		ret = ft_putnbr_base(va_arg(str, int), "0123456789abcdef");
+		ret = check(str, 'p');
 	else if (str1[i] == '%')
 		ret = ft_putchar_fd('%', 1);
 	return (ret);
@@ -44,6 +66,8 @@ int	ft_printf(const char *str1, ...)
 
 	i = 0;
 	ret = 0;
+	if (str1 == NULL)
+		return (-1);
 	va_start(str, str1);
 	while (str1[i])
 	{
