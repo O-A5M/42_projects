@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:25:53 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/12/09 18:45:11 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:27:53 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_p(void *p)
 	if (!p)
 		i = ft_putstr_fd("(nil)", 1);
 	else
-		i = ft_putadr((unsigned long long int)p);
+		i = ft_putadr((long unsigned int)p);
 	return (i);
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putadr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 19:39:05 by oakhmouc          #+#    #+#             */
+/*   Updated: 2024/12/09 21:27:14 by oakhmouc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static int	base_len(char *base)
@@ -22,7 +34,7 @@ static int	base_len(char *base)
 	return (n);
 }
 
-unsigned int	ft_putnbr_base_long(unsigned long long int lnbr, char *base)
+unsigned int	ft_putnbr_base_long(long long unsigned int lnbr, char *base)
 {
 	size_t		lbase;
 	int			ret;
@@ -37,7 +49,7 @@ unsigned int	ft_putnbr_base_long(unsigned long long int lnbr, char *base)
 	return (ret);
 }
 
-int	ft_putadr(unsigned long long int nb)
+int	ft_putadr(long long unsigned int nb)
 {
 	int	i;
 
