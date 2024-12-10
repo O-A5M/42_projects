@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 19:39:05 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/12/09 21:27:14 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:55:30 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ unsigned int	ft_putnbr_base_long(long long unsigned int lnbr, char *base)
 	if (lbase < 2)
 		return (0);
 	if (lnbr >= lbase)
-		ret += ft_putnbr_base(lnbr / lbase, base);
+		ret += ft_putnbr_base_long(lnbr / lbase, base);
 	ret += ft_putchar_fd(base[lnbr % lbase], 1);
 	return (ret);
 }

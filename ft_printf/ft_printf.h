@@ -6,7 +6,7 @@
 /*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 00:26:19 by oakhmouc          #+#    #+#             */
-/*   Updated: 2024/12/09 21:27:33 by oakhmouc         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:55:49 by oakhmouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 
 int	ft_printf(const char *s, ...);
-int	ft_putnbr_base(unsigned long int nbr, char *base);
+int	ft_putnbr_base(unsigned int nbr, char *base);
 int	ft_putuns(unsigned int n, int fd);
 int	ft_putstr_fd(char *s, int fd);
 int	ft_putchar_fd(char c, int fd);
