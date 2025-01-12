@@ -7,7 +7,7 @@
 # define WIN_X 1920 / 2
 # define WIN_Y 1080 / 2
 # define COLOR 0x00FF0000
-# include </home/oakhmouc/minilibx-linux/mlx.h>
+# include </home/othman/minilibx-linux/mlx.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -33,5 +33,6 @@ int 	close_x(w_data *window);
 char	*get_the_info(t_data image);
 void	draw_in_image(t_data *image, int x, int y, int color);
 void	draw_circle(t_data *image, int cx, int cy, int radius);
+int		zoom_in(int the_code, t_data *image);
 
 #endif

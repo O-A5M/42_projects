@@ -14,7 +14,7 @@ char	*get_the_info(t_data image)
 	return (image.addr);
 }
 
-void	draw_circle(t_data image, int cx, int cy, int radius)
+void	draw_circle(t_data *image, int cx, int cy, int radius)
 {
 	int	x;
 	int	y;
@@ -26,7 +26,7 @@ void	draw_circle(t_data image, int cx, int cy, int radius)
 		while (y < WIN_Y)
 		{
 			if ((cx - x) * (cx - x) + (cy - y) * (cy - y) <= radius * radius)
-				draw_in_image(&image, x, y, COLOR);
+				draw_in_image(image, x, y, COLOR);
 			y++;
 		}
 		x++;

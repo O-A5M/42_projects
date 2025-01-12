@@ -1,21 +1,18 @@
 CFLAGS = -Wall -Wextra -Werror
 CC = cc
 SRC = fract_ol.c fract_events.c fract_draw.c
-OBJ = $(SRC:.c=.o)
 NAME = fractol
+XFLAGS = -L/home/othman/minilibx-linux -lmlx -lX11 -lXext
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar -rcs $(NAME) $(OBJ)
+$(NAME): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) $(XFLAGS) -o $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(NAME)
 
 fclean: clean
-	rm -fr $(NAME)
 
 re: fclean all
 

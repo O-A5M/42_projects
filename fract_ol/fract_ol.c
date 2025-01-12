@@ -11,5 +11,6 @@ int	main()
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length, &image.endian);
 	draw_circle(&image, 50, 50, 50);
 	mlx_put_image_to_window(window.mlx, window.win, image.img, 0, 0);
+	mlx_key_hook(window.win, esc_close, window.mlx);
 	mlx_loop(window.mlx);
 }
