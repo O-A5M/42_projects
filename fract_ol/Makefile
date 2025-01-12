@@ -1,6 +1,6 @@
 CFLAGS = -Wall -Wextra -Werror
 CC = cc
-SRC = fract_ol.c fract_events.c
+SRC = fract_ol.c fract_events.c fract_draw.c
 OBJ = $(SRC:.c=.o)
 NAME = fractol
 
@@ -18,5 +18,7 @@ fclean: clean
 	rm -fr $(NAME)
 
 re: fclean all
+
+do: all clean
 
 .PHONY: clean

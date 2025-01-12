@@ -28,7 +28,10 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-int	esc_close(int the_code, w_data window);
-int close_x(w_data *window);
+int		esc_close(int the_code, w_data window);
+int 	close_x(w_data *window);
+char	*get_the_info(t_data image);
+void	draw_in_image(t_data *image, int x, int y, int color);
+void	draw_circle(t_data *image, int cx, int cy, int radius);
 
 #endif
