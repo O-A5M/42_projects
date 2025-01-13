@@ -3,7 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-				"/home/othman/minilibx-linux"
+				"/home/oakhmouc/minilibx-linux"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

@@ -7,7 +7,7 @@
 # define WIN_X 1920 / 2
 # define WIN_Y 1080 / 2
 # define COLOR 0x00FF0000
-# include </home/othman/minilibx-linux/mlx.h>
+# include </home/oakhmouc/minilibx-linux/mlx.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
