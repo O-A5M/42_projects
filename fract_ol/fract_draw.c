@@ -27,6 +27,8 @@ void	draw_circle(t_data *image, int cx, int cy, int radius)
 		{
 			if ((cx - x) * (cx - x) + (cy - y) * (cy - y) <= radius * radius)
 				draw_in_image(image, x, y, COLOR);
+			else
+				draw_in_image(image, x, y, 0x0000FF00);
 			y++;
 		}
 		x++;
