@@ -1,25 +1,31 @@
 #include "fract_ol.h"
 
-int	esc_close(int the_code, w_data window)
+int	esc_close(int the_code, t_data *window)
 {
-	(void)window.mlx;
 	if (the_code == ESC_KEY)
 	{
-		printf("hello");
-		fflush(NULL);
+		mlx_destroy_image(window -> mlx, window -> img);
+		mlx_destroy_window(window -> mlx, window -> win);
+		mlx_destroy_display(window -> mlx);
+		free(window -> mlx);
+		free(window);
 		exit(0);
 	}
 	return (0);
 }
 
-int	cross_close(w_data window)
+int	cross_close(t_data *window)
 {
-	(void)window.mlx;
+	mlx_destroy_image(window -> mlx, window -> img);
+	mlx_destroy_window(window -> mlx, window -> win);
+	mlx_destroy_display(window -> mlx);
+	free(window -> mlx);
+	free(window);
 	exit(0);
 	return (0);
 }
 
-int	motion_p(int the_code, int x, int y, w_data window)
+int	motion_p(int the_code, int x, int y, t_data window)
 {
 	x = y;
 	y = x;

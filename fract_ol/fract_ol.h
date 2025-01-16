@@ -16,29 +16,25 @@
 # include <unistd.h>
 # include <stddef.h>
 
-typedef struct	w_data
-{
-	void	*mlx;
-	void	*win;
-}				w_data;
-
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	void	*mlx;
+	void	*win;
 }				t_data;
 
-int		esc_close(int the_code, w_data window);
-int 	close_x(w_data *window);
+int		esc_close(int the_code, t_data *window);
+int 	close_x(t_data *window);
 char	*get_the_info(t_data image);
 void	draw_in_image(t_data *image, int x, int y, int color);
 void	draw_circle(t_data *image, int cx, int cy, int radius);
 int		zoom_in(int the_code, t_data *image);
 int		cord_x(int x);
 int		cord_y(int y);
-int		motion_p(int the_code, int x, int y, w_data window);
-int		cross_close(w_data window);
+int		motion_p(int the_code, int x, int y, t_data window);
+int		cross_close(t_data *window);
 
 #endif
