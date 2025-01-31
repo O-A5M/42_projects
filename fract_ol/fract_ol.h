@@ -24,6 +24,8 @@ typedef struct	s_data {
 	int		endian;
 	void	*mlx;
 	void	*win;
+	int		height;
+	int		width;
 }				t_data;
 
 int		esc_close(int the_code, t_data *window);
