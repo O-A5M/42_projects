@@ -28,6 +28,12 @@ typedef struct	s_data {
 	int		width;
 }				t_data;
 
+typedef struct	f_data
+{
+	double	x;
+	double	y;
+}				f_data;
+
 int		esc_close(int the_code, t_data *window);
 int 	close_x(t_data *window);
 char	*get_the_info(t_data image);

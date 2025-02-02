@@ -11,7 +11,6 @@ int	main()
 	window -> win = mlx_new_window(window -> mlx, WIN_X, WIN_Y, "Fract-ol");
 	window -> img = mlx_new_image(window -> mlx, WIN_X, WIN_Y);
 	window -> addr = mlx_get_data_addr(window -> img, &window -> bits_per_pixel, &window -> line_length, &window -> endian);
-	draw_circle(window, cord_x(0), cord_y(0), 150);
 	mlx_put_image_to_window(window -> mlx, window -> win, window -> img, 0, 0);
 	mlx_key_hook(window -> win, esc_close, window);
 	mlx_hook(window -> win, 4, 1L>>2, motion_p, window);
