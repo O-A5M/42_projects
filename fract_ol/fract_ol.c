@@ -12,6 +12,7 @@ int	main()
 	window -> img = mlx_new_image(window -> mlx, WIN_X, WIN_Y);
 	window -> addr = mlx_get_data_addr(window -> img, &window -> bits_per_pixel, &window -> line_length, &window -> endian);
 	mlx_put_image_to_window(window -> mlx, window -> win, window -> img, 0, 0);
+	fract_equat(window);
 	mlx_key_hook(window -> win, esc_close, window);
 	mlx_hook(window -> win, 4, 1L>>2, motion_p, window);
 	mlx_hook(window -> win, 17, 0, cross_close, window);
